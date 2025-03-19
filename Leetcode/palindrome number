@@ -1,0 +1,18 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+        int copy_num = x;
+        long long compare = 0;
+
+        while (copy_num > 0){
+            int last_digit = copy_num % 10;
+            compare = compare * 10 + last_digit;
+            copy_num /= 10;
+        }
+
+        if (compare == x) {
+            return true;
+        }
+        return false;
+    }
+};
