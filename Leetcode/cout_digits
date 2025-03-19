@@ -1,0 +1,36 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+
+class Solution {
+  public:
+    // Function to count the number of digits in n that evenly divide n
+    int evenlyDivides(int n) {
+        // code here
+        vector<int> nums;
+        int copy_num = n;
+        int count = 0;
+        
+        while (copy_num > 0) {
+            int extract_num = copy_num % 10;
+            
+            if (extract_num != 0) {
+                nums.push_back(extract_num);
+            }
+            
+            copy_num = copy_num / 10; 
+        }
+        
+        for (auto it: nums){
+            // std::cout << it << std::endl;
+            if (n % it == 0){
+                count += 1;
+            }
+        }
+        
+        return count;
+    }
+};
