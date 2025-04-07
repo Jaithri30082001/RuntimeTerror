@@ -1,0 +1,23 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        
+        // 1 2 3 4 5 6 7  => size of the array - 7 -> changing index = 7 - 3 = 4
+        // 0 1 2 3 4 5 6
+        k = k % nums.size();
+
+        reverse(nums.begin(), nums.end());  // 7 6 5 4 3 2 1
+        reverse(nums.begin(), nums.begin() + k); // 5 6 7 4 3 2 1
+        reverse(nums.begin() + k, nums.end()); // 5 6 7 1 2 3 4
+
+          
+        // while (k > 0) {
+        //     int last_num = nums[nums.size() - 1];
+        //     nums.insert(nums.begin(), last_num);
+        //     nums.pop_back();
+        //     k --;
+        // }
+
+        
+    }
+};
