@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        // 0 0 1 1 1 2 2 3 3 4
+        // 0 1 2 3 4 5 6 7 8 9
+        //     c = 0 i = 0 -> 0 < 9 -> nums[0] and nums[1] -> 0 == 0 -> 0 0 1 1 1 2 2 3 3 4 0 -> 0 1 1 1 2 2 3 3 4 0 and c++
+        //     c = 1 i = 0 -> 0 < 9 -> nums[0] and nums[1] -> 0 != 1 -> i++ and c++
+        //     c = 2 i = 1 -> 1 < 9 -> nums[1] and nums[2] -> 1 == 1 -> 0 1 1 1 2 2 3 3 4 0 1 -> 0 1 1 2 2 3 3 4 0 1 and c++
+        //     c = 3 i = 1 -> 1 < 9 -> nums[1] and nums[2] -> 1 == 1 -> 0 1 1 2 2 3 3 4 0 1 1 -> 0 1 2 2 3 3 4 0 1 1 and c++
+        //     c = 4 i = 1 -> 1 < 9 -> nums[1] and nums[2] -> 1 != 2 -> i++ and c++
+        //     c = 5 i = 2 -> 2 < 9 -> nums[2] and nums[3] -> 2 == 2 -> 0 1 2 2 3 3 4 0 1 1 2 -> 0 1 2 3 3 4 0 1 1 2 and c++
+        //     c = 6 i = 2 -> 2 < 9 -> nums[2] and nums[3] -> 2 != 3 -> i++ and c++
+        //     c = 7 i = 3 -> 3 < 9 -> nums[3] and nums[4] -> 3 == 3 -> 0 1 2 3 3 4 0 1 1 2 3 -> 0 1 2 3 4 0 1 1 2 3 and c++
+        //     c = 8 i = 3 -> 3 < 9 -> nums[3] and nums[4] -> 3 != 4 -> i++ and c++
+        //     c = 9  i = 4 which is not less than 9 - so we come out of the loop
+
+        // 0 1 1 1 2 2 3 3 4 0
+        // 0 1 1 2 2 3 3 4 0 1
+        // 0 1 2 2 3 3 4 0 1 1
+        // 0 1 2 3 3 4 0 1 1 2
+        // 0 1 2 3 4 0 1 1 2 3
+
+        int i = 0;
+        int c = 0;
+        while (i < nums.size() - 1 and c < nums.size() - 1) {
+            if (nums[i] == nums[i + 1]) {
+                nums.push_back(nums[i]);
+                nums.erase(nums.begin() + i + 1);
+                c++;
+            }
+            else {
+            i ++;
+            c++;
+            }
+        }
+        return i + 1;
+    }
+};
