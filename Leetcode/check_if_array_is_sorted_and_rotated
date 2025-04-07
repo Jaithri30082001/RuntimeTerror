@@ -1,0 +1,30 @@
+// Check if Array Is Sorted and Rotated
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        
+        vector<int> copy_nums = nums;
+        
+        vector<int> sorted_nums = nums;
+        sort(sorted_nums.begin(), sorted_nums.end());
+
+        if (nums == sorted_nums) return true;
+
+        int index = 0;
+
+        while(index < copy_nums.size() - 2 && copy_nums[index] <= copy_nums[index + 1]) {
+            index ++;
+        }
+
+        cout << "index: " << index;
+
+        int x = copy_nums.size() - 1 - index;
+
+        for (int i = 0; i < copy_nums.size(); i++) {
+            if (copy_nums[i] != sorted_nums[(i + x) % sorted_nums.size()]) return false;
+        }
+
+        return true;
+
+    }
+};
