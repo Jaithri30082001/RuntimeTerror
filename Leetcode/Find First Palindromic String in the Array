@@ -1,0 +1,21 @@
+TIME COMPLEXITY - O(N * M) and SPACE COMPLEXITY - O(1)
+class Solution {
+public:
+    string firstPalindrome(vector<string>& words) {
+        for (auto word: words) {
+            int i = 0;
+            int j = word.size() - 1;
+            int temp = 0;
+            while (i <= j) {
+                if (word[i] != word[j]) {
+                    temp = 1;
+                    break;
+                }
+                i ++;
+                j --;
+            }
+            if (temp == 0) return word;
+        }
+        return "";
+    }
+};
