@@ -1,0 +1,27 @@
+TIME COMPLEXITY - O(log N) and SPACE COMPLEXITY - O(1)
+
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& nums) {
+        
+        int l = 0;
+        int h = nums.size() - 1;
+
+        while (l <= h && l < nums.size() - 1 && h >= 0) {
+            if (nums[l] != nums[l + 1]) {
+                return nums[l];
+            }
+
+            else if (nums[h] != nums[h - 1]) {
+                return nums[h];
+            }
+
+            else {
+                l += 2;
+                h -= 2;
+            }
+        }
+
+        return nums[0];
+    }
+};
