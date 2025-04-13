@@ -1,0 +1,60 @@
+// Recursive approach: TC - O(2 ^ n) and SC - O(n) call stack.
+
+class Solution {
+public:
+    int fib(int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        else if (n == 1) {
+            return 1;
+        }
+
+        return fib(n - 1) + fib(n - 2);
+    }
+
+};
+
+
+// Dynammic Programming approach (Bottom - up): TC - O(n) and SC - O(n)
+
+class Solution {
+public:
+    int fib(int n) {
+        vector<int> temp;
+        temp.push_back(0);
+        temp.push_back(1);
+
+
+        for (int i = 0; i < n; i++) {
+            int n1 = temp.size() - 1;
+            temp.push_back(temp[n1] + temp[n1 - 1]);
+        }
+
+        return temp[n];
+    }
+};
+
+// Dynamic Programming approach (Top - down): TC - O(n) and SC - O(n)
+
+class Solution {
+public:
+    int dp [101];
+
+    Solution() {
+        memset(dp, -1, sizeof(dp));
+    };
+
+    int fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        if (dp[n] != -1) {
+            return dp[n];
+        }
+
+        return dp[n] = fib(n - 1) + fib(n - 2);
+    }
+};
